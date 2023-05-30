@@ -5,13 +5,13 @@ pipeline {
 
         stage('테스트') {
             steps {
-                sh './gradlew test'
+                sh 'sudo ./gradlew test'
             }
         }
 
         stage('빌드') {
             steps {
-                sh './gradlew clean bootJar'
+                sh 'sudo ./gradlew clean bootJar'
             }
         }
 
