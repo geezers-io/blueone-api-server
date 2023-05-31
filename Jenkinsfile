@@ -9,6 +9,11 @@ pipeline {
 
     stages {
 
+        stage('테스트') {
+            steps {
+                sh 'printenv | sort'
+            }
+        }
         stage('환경 변수 설정') {
             steps {
                 echo "JDBC 연결 URL은 ${env.DB_URL}"
