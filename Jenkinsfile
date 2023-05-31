@@ -9,7 +9,7 @@ pipeline {
 
     stages {
 
-        stage('테스트') {
+        stage('환경 설정 테스트') {
             steps {
                 sh 'printenv | sort'
             }
