@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DB_URL='jdbc:mariadb://mariadb:3306/blueone'
-        DB_USERNAME='root'
-        DB_PASSWORD=env['MARIADB_ROOT_PASSWORD']
+        DB_URL="jdbc:mariadb://mariadb:3306/blueone"
+        DB_USERNAME="root"
+        DB_PASSWORD="${MARIADB_ROOT_PASSWORD}"
     }
 
     stages {
