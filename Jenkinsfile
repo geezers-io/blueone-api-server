@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DB_URL="DB_URL"
-        DB_USERNAME="DB_USERNAME"
-        DB_PASSWORD="DB_PASSWORD"
+        DB_URL="env.DB_URL"
+        DB_USERNAME="env.DB_USERNAME"
+        DB_PASSWORD="env.DB_PASSWORD"
     }
 
     stages {
@@ -12,8 +12,8 @@ pipeline {
         stage('환경 변수 설정') {
             steps {
                 echo "JDBC 연결 URL은 ${env.DB_URL}"
-                echo "DB 사용자명는 ${env.DB_URL}"
-                echo "DB 비밀번호는 ${env.DB_URL}"
+                echo "DB 사용자명는 ${env.DB_USERNAME}"
+                echo "DB 비밀번호는 ${env.DB_PASSWORD}"
             }
         }
 
