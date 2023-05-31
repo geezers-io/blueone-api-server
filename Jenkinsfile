@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DB_URL="env.DB_URL"
-        DB_USERNAME="env.DB_USERNAME"
-        DB_PASSWORD="env.DB_PASSWORD"
+        DB_URL=env.DB_URL
+        DB_USERNAME=env.DB_USERNAME
+        DB_PASSWORD=env.DB_PASSWORD
     }
 
     stages {
@@ -28,8 +28,6 @@ pipeline {
                 sh './gradlew clean bootJar'
             }
         }
-
-
 
         stage('배포') {
             steps {
