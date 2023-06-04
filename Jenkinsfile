@@ -30,8 +30,6 @@ pipeline {
                     color:  '#30A2FF',
                     message: '테스트가 시작되었습니다.\n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}'
                 )
-            }
-            steps {
                 echo '테스트가 시작됩니다.'
                 sh './gradlew test'
             }
