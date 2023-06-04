@@ -28,7 +28,7 @@ pipeline {
                 slackSend (
                     channel: '#jenkins-notification',
                     color:  '#30A2FF',
-                    message: '테스트가 시작되었습니다.\n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}'
+                    message: "테스트가 시작되었습니다.\n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}"
                 )
                 echo '테스트가 시작됩니다.'
                 sh './gradlew test'
@@ -54,14 +54,14 @@ pipeline {
             slackSend (
                 channel: '#jenkins-notification',
                 color:  '#6ECCAF',
-                message: '작업이 성공적으로 수행되었습니다. \n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}'
+                message: "작업이 성공적으로 수행되었습니다. \n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}"
             )
         }
         failure {
             slackSend (
                 channel: '#jenkins-notification',
                 color:  '#FF0060',
-                message: '작업이 실패하였습니다. \n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}'
+                message: "작업이 실패하였습니다. \n작업 이름: ${env.JOB_NAME} \n작업 번호: ${env.BUILD_NUMBER} \nURL: ${env.BUILD_URL}"
             )
         }
     }
