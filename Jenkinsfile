@@ -50,9 +50,7 @@ def notifyBuildAborted(stageName, workNumber, url) {
 }
 
 pipeline {
-  agent {
-    label 'BLUEONE'
-  }
+  agent any
 
   environment {
     DB_URL="jdbc:mariadb://mariadb:3306/blueone"
