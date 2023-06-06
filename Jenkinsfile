@@ -94,7 +94,7 @@ pipeline {
     }
 
     success {
-      notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
+      notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, SUCCESS, env.BRANCH_NAME)
     }
 
     aborted {
