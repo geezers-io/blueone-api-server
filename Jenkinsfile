@@ -93,9 +93,11 @@ pipeline {
     success {
       notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
     }
-    aborted {
 
+    aborted {
+      print('공사 중')
     }
+
     failure {
       slackSend (
         channel: '#jenkins-notification',
