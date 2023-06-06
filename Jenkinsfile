@@ -64,12 +64,14 @@ pipeline {
 
     stage('환경 설정 테스트') {
       steps {
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         sh 'printenv | sort'
       }
     }
 
     stage('테스트') {
       steps {
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         echo '테스트가 시작됩니다.'
         sh './gradlew test'
       }
@@ -77,12 +79,14 @@ pipeline {
 
     stage('빌드') {
       steps {
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         sh './gradlew clean bootJar'
       }
     }
 
     stage('배포') {
       steps {
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         echo '배포 중...'
       }
     }
@@ -90,10 +94,6 @@ pipeline {
   }
 
   post {
-    always {
-      notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
-    }
-
     success {
       notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
     }
