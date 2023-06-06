@@ -1,12 +1,12 @@
 def notifyStageStart(stageName, workNumber, url, branchName) {
   def START = '#30A2FF'
   def defaultSlackChannel = '#jenkins-notification'
+  def info = "작업번호: ${workNumber}(${branchName})"
   print("${stageName} 시작에 대해 슬랙 메시지를 발행합니다.")
   def message = """
-*"${stageName}"* 단계가 시작되었~~쥬? 터질 지 성공할 지는 아무도 장담 못하~~~~쥬???ㅋㅋ😘😘
-굳이 알려주기 싫지만, 작업 번호는 *${workNumber}* 번(${branchName}),
-작업 내역 상세하게 보고 싶으면 ㅋㅋㅋㅋ 굳이 이걸??? 싶지만 ㅋㅋㅋㅋ 😊😊
-<${url}| *여기*> 🤣🤣🤣🤣
+*"${stageName}"* 작업이 수행됩니다!
+${info}
+<${url}| *작업* 은 여기서 확인하세요>
     """
   slackSend(
     channel: defaultSlackChannel,
@@ -18,11 +18,13 @@ def notifyStageStart(stageName, workNumber, url, branchName) {
 def notifySuccess(stageName, workNumber, url, branchName) {
   def defaultSlackChannel = '#jenkins-notification'
   def SUCCESS = '#6ECCAF'
+  def info = "작업번호: ${workNumber}(${branchName})"
   def message = ''
   if (stageName == '빌드') {
     message = """
-*${workNumber}* 번(${branchName}}) ${stageName} 단계는 아직 구현중이긴한데 일단 성공했엉~ 너 짱;; 👍
-추 후 도커 이미지로 자동화 배포를 구현할 예정이예양~~😒 <${url}|open>
+${stageName} 단계는 아직 구현중이며 일단 성공했음을 알립니다! 👍
+${info}
+추 후 도커 이미지로 자동화 배포를 구현할 예정입니당~ 😒 <${url}|open>
 """
   } else if (stageName == '테스트') {
     message = """
