@@ -1,10 +1,9 @@
-def defaultSlackChannel = '#jenkins-notification'
-
 def START = '#30A2FF'
 def SUCCESS = '#6ECCAF'
 def FAILED = '#FF0060'
 
-def notifyStageStart(stageName, workNumber, url) {
+def notifyStageStart(stageName, workNumber, url, colorCode) {
+  def defaultSlackChannel = '#jenkins-notification'
   print("${stageName} 시작에 대해 슬랙 메시지를 발행합니다.")
   def message = """
         [${stageName}] 단계가 시작되었~~쥬? 터질 지 성공할 지는 아무도 장담 못하~~~~쥬???ㅋㅋㅋ 😘😘
@@ -14,7 +13,7 @@ def notifyStageStart(stageName, workNumber, url) {
     """
   slackSend(
     channel: defaultSlackChannel,
-    color: START,
+    color: colorCode,
     message
   )
 }
@@ -38,7 +37,7 @@ pipeline {
 
     stage('테스트') {
       steps {
-        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL)
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START)
         echo '테스트가 시작됩니다.'
         sh './gradlew test'
       }
