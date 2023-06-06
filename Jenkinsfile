@@ -14,7 +14,7 @@ def notifyStageStart(stageName, workNumber, url, colorCode) {
   slackSend(
     channel: defaultSlackChannel,
     color: colorCode,
-    message
+    message: message
   )
 }
 
