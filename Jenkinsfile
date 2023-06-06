@@ -4,8 +4,6 @@ enum COLOR {
   START('#30A2FF'),
   SUCCESS('#6ECCAF'),
   FAILED('#FF0060')
-
-  final String code;
 }
 
 def notifyStageStart(stageName, workNumber, url, colorCode) {
@@ -42,7 +40,7 @@ pipeline {
 
     stage('테스트') {
       steps {
-        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, COLOR.START.code)
+        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, COLOR.START)
         echo '테스트가 시작됩니다.'
         sh './gradlew test'
       }
