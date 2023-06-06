@@ -7,7 +7,7 @@ def notifyStageStart(stageName, workNumber, url, colorCode, branchName) {
   print("${stageName} 시작에 대해 슬랙 메시지를 발행합니다.")
   def message = """
 *"${stageName}"* 단계가 시작되었~~쥬? 터질 지 성공할 지는 아무도 장담 못하~~~~쥬???ㅋㅋ😘😘
-굳이 알려주기 싫지만, 작업 번호는 *${workNumber}*번(${branchName}}),
+굳이 알려주기 싫지만, 작업 번호는 *${workNumber}* 번(${branchName}),
 작업 내역 상세하게 보고 싶으면 ㅋㅋㅋㅋ 굳이 이걸??? 싶지만 ㅋㅋㅋㅋ 😊😊
 <${url}| *여기*> 🤣🤣🤣🤣
     """
@@ -23,15 +23,15 @@ def notifySuccess(stageName, workNumber, url, colorCode, branchName) {
   def message = ''
   if (stageName == '빌드') {
     message = """
-*${workNumber}*번(${branchName}}) ${stageName} 단계는 아직 구현중이긴한데 일단 성공했엉~ 너 짱;; 👍
+*${workNumber}* 번(${branchName}}) ${stageName} 단계는 아직 구현중이긴한데 일단 성공했엉~ 너 짱;; 👍
 추 후 도커 이미지로 자동화 배포를 구현할 예정이예양~~😒 <${url}|open>
 """
   } else if (stageName == '테스트') {
     message = """
-*${workNumber}*번(${branchName}) ${stageName} 테스트에 성공했음~~ 코드 좀 치네 😉😉 <${url}|open>
+*${workNumber}* 번(${branchName}) ${stageName} 테스트에 성공했음~~ 코드 좀 치네 😉😉 <${url}|open>
 """
   } else {
-    message = "${workNumber}번(${branchName}) 에 성공했음! <${url}|open>"
+    message = "*${workNumber}* 번(${branchName}) 작업에 성공했음! <${url}|open>"
   }
   slackSend(
     channel: defaultSlackChannel,
@@ -69,7 +69,6 @@ pipeline {
 
     stage('테스트') {
       steps {
-        notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
         echo '테스트가 시작됩니다.'
         sh './gradlew test'
       }
@@ -90,6 +89,10 @@ pipeline {
   }
 
   post {
+    always {
+      notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
+    }
+
     success {
       notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
     }
