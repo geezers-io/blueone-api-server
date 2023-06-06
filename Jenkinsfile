@@ -1,8 +1,5 @@
-def START = '#30A2FF'
-def SUCCESS = '#6ECCAF'
-def FAILED = '#FF0060'
-
-def notifyStageStart(stageName, workNumber, url, colorCode, branchName) {
+def notifyStageStart(stageName, workNumber, url, branchName) {
+  def START = '#30A2FF'
   def defaultSlackChannel = '#jenkins-notification'
   print("${stageName} 시작에 대해 슬랙 메시지를 발행합니다.")
   def message = """
@@ -13,13 +10,14 @@ def notifyStageStart(stageName, workNumber, url, colorCode, branchName) {
     """
   slackSend(
     channel: defaultSlackChannel,
-    color: colorCode,
+    color: START,
     message: message
   )
 }
 
-def notifySuccess(stageName, workNumber, url, colorCode, branchName) {
+def notifySuccess(stageName, workNumber, url, branchName) {
   def defaultSlackChannel = '#jenkins-notification'
+  def SUCCESS = '#6ECCAF'
   def message = ''
   if (stageName == '빌드') {
     message = """
@@ -35,23 +33,24 @@ def notifySuccess(stageName, workNumber, url, colorCode, branchName) {
   }
   slackSend(
     channel: defaultSlackChannel,
-    color: colorCode,
+    color: SUCCESS,
     message: message
   )
 }
 
-def notifyBuildFailure(stageName, workNumber, url, colorCode) {
+def notifyBuildFailure(stageName, workNumber, url) {
+  def FAILED = '#FF0060'
   def defaultSlackChannel = '#jenkins-notification'
 
 }
 
-def notifyBuildAborted(stageName, workNumber, url, colorCode) {
+def notifyBuildAborted(stageName, workNumber, url) {
   def defaultSlackChannel = '#jenkins-notification'
 
 }
 
 pipeline {
-  agent any
+  agent none
 
   environment {
     DB_URL="jdbc:mariadb://mariadb:3306/blueone"
@@ -90,11 +89,11 @@ pipeline {
 
   post {
     always {
-      notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, START, env.BRANCH_NAME)
+      notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
     }
 
     success {
-      notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, SUCCESS, env.BRANCH_NAME)
+      notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
     }
 
     aborted {
@@ -109,5 +108,6 @@ pipeline {
       )
     }
   }
+
 }
 
