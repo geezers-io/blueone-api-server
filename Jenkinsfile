@@ -1,10 +1,8 @@
 def defaultSlackChannel = '#jenkins-notification'
 
-enum COLOR {
-  START('#30A2FF'),
-  SUCCESS('#6ECCAF'),
-  FAILED('#FF0060')
-}
+def START = '#30A2FF'
+def SUCCESS = '#6ECCAF'
+def FAILED = '#FF0060'
 
 def notifyStageStart(stageName, workNumber, url, colorCode) {
   print("${stageName} 시작에 대해 슬랙 메시지를 발행합니다.")
@@ -16,7 +14,7 @@ def notifyStageStart(stageName, workNumber, url, colorCode) {
     """
   slackSend(
     channel: defaultSlackChannel,
-    color: colorCode,
+    color: START,
     message
   )
 }
