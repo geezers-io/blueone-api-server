@@ -75,12 +75,24 @@ pipeline {
         echo '테스트가 시작됩니다.'
         sh './gradlew test'
       }
+
+      post {
+        success {
+          notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
+        }
+      }
     }
 
     stage('빌드') {
       steps {
         notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         sh './gradlew clean bootJar'
+      }
+
+      post {
+        success {
+          notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
+        }
       }
     }
 
@@ -89,19 +101,17 @@ pipeline {
         notifyStageStart(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
         echo '배포 중...'
       }
+
+      post {
+        success {
+          notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
+        }
+      }
     }
 
   }
 
   post {
-    success {
-      notifySuccess(env.STAGE_NAME, env.BUILD_NUMBER, env.BUILD_URL, env.BRANCH_NAME)
-    }
-
-    aborted {
-      print('공사 중')
-    }
-
     failure {
       slackSend (
         channel: '#jenkins-notification',
