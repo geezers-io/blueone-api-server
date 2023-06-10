@@ -21,7 +21,6 @@ class JPAConfig(private val localProperties: LocalProperties) {
             .create()
 
         val dataSourceBuilder = DataSourceBuilder.create()
-        dataSourceBuilder
             .driverClassName("org.mariadb.jdbc.Driver")
             .url(dataSourceProperties.url)
             .username(dataSourceProperties.username)
