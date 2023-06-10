@@ -41,13 +41,12 @@ class User(
     fun deserializeRole(role: UserRole): String = when (role) {
         UserRole.ADMIN -> "admin"
         UserRole.USER -> "user"
-        else -> throw IllegalArgumentException("Invalid Role Argument")
     }
 
     fun serializeRole(roleAsString: String): UserRole = when (roleAsString) {
         "admin" -> UserRole.ADMIN
         "user" -> UserRole.USER
-        else -> throw IllegalArgumentException("Invalid Role String Argument")
+        else -> throw IllegalArgumentException("해당 문자열은 role 객체로 직렬화 할 수 없습니다.")
     }
 
 }
