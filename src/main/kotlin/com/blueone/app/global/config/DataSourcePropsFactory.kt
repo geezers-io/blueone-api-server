@@ -9,13 +9,11 @@ class DataSourcePropsFactory(
     private val testProperties: AppDataSource
 ) {
 
-    fun create(): AppDataSource {
-        return when (profile) {
+    fun create(): AppDataSource = when (profile) {
             "dev" -> localProperties
             "prod" -> prodProperties
             "test" -> testProperties
             else -> throw IllegalArgumentException("Invalid Property(profileName) Name :(")
-        }
     }
 
 }
