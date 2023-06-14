@@ -3,6 +3,7 @@ package com.blueone.app.transport.model
 import com.blueone.app.global.jpa.CreateUpdateDateSet
 import com.blueone.app.user.model.User
 import jakarta.persistence.*
+import java.time.LocalDate
 import java.util.Date
 
 @Entity(name = "transports")
@@ -37,16 +38,16 @@ class Transport(
         private val remark: String,
 
         @Temporal(TemporalType.TIMESTAMP)
-        private val checkTime: Date,
+        private val checkTime: LocalDate,
 
         @Temporal(TemporalType.TIMESTAMP)
-        private val endTime: Date,
+        private val endTime: LocalDate,
 
         @Column(nullable = false)
         private val isPenalty: Boolean = false,
 
         @Temporal(TemporalType.TIMESTAMP)
-        private val bookingDate: Date,
+        private val bookingDate: LocalDate,
 
         @Embedded
         private val createUpdateDateSet: CreateUpdateDateSet
@@ -61,11 +62,11 @@ class Transport(
     fun getCharge(): String { return this.charge }
     fun getSubsidy(): String { return this.subsidy }
     fun getRemark(): String { return this.remark }
-    fun getCheckTime(): Date { return this.checkTime }
-    fun getEndTime(): Date { return this.endTime }
+    fun getCheckTime(): LocalDate { return this.checkTime }
+    fun getEndTime(): LocalDate { return this.endTime }
     fun getIsPenalty(): Boolean { return this.isPenalty }
-    fun getBookingDate(): Date { return this.bookingDate }
-    fun getCreatedDate(): Date { return this.createUpdateDateSet.createdDate }
-    fun getUpdatedDate(): Date { return this.createUpdateDateSet.updatedDate }
+    fun getBookingDate(): LocalDate { return this.bookingDate }
+    fun getCreatedDate(): LocalDate { return this.createUpdateDateSet.createdDate }
+    fun getUpdatedDate(): LocalDate { return this.createUpdateDateSet.updatedDate }
 
 }

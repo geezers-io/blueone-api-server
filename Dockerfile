@@ -5,7 +5,6 @@ COPY settings.gradle.kts .
 COPY build.gradle.kts .
 COPY src src
 RUN gradle bootJar
-RUN pwd
 
 FROM openjdk:17-alpine
 RUN mkdir /opt/app
