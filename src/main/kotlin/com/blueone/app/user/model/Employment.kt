@@ -29,11 +29,11 @@ class Employment(
     private val insuranceExpiredDate: Date,
 ) {
     /** Getters **/
-    fun getId(): Long { return this.id }
-    fun getBirthDate(): String { return this.birthDate }
-    fun getLicenseNumber(): String { return this.licenseNumber }
-    fun getLicenseType(): String { return this.licenseType }
-    fun getInsuranceNumber(): String { return this.insuranceNumber }
-    fun getInsuranceExpiredDate(): Date { return this.insuranceExpiredDate }
+    fun getId(): Long = this.id
+    fun getBirthDate(): String = this.birthDate
+    fun getLicenseNumber(): String = this.licenseNumber
+    fun getLicenseType(): String = this.licenseType
+    fun getInsuranceNumber(): String = this.insuranceNumber
+    fun getInsuranceExpiredDate(): Date = this.insuranceExpiredDate
 
 }

@@ -53,20 +53,20 @@ class Transport(
         private val createUpdateDateSet: CreateUpdateDateSet
 ) {
     /** Getters **/
-    fun getId(): Long { return this.id }
-    fun getUser(): User { return this.user }
-    fun getOrigin(): String { return this.origin }
-    fun getWaypoint(): String { return this.waypoint }
-    fun getDestination(): String { return this.destination }
-    fun getCarModel(): String { return this.carModel }
-    fun getCharge(): String { return this.charge }
-    fun getSubsidy(): String { return this.subsidy }
-    fun getRemark(): String { return this.remark }
-    fun getCheckTime(): LocalDate { return this.checkTime }
-    fun getEndTime(): LocalDate { return this.endTime }
-    fun getIsPenalty(): Boolean { return this.isPenalty }
-    fun getBookingDate(): LocalDate { return this.bookingDate }
-    fun getCreatedDate(): LocalDate { return this.createUpdateDateSet.createdDate }
-    fun getUpdatedDate(): LocalDate { return this.createUpdateDateSet.updatedDate }
+    fun getId(): Long = this.id
+    fun getUser(): User = this.user
+    fun getOrigin(): String = this.origin
+    fun getWaypoint(): String = this.waypoint
+    fun getDestination(): String = this.destination
+    fun getCarModel(): String = this.carModel
+    fun getCharge(): String = this.charge
+    fun getSubsidy(): String = this.subsidy
+    fun getRemark(): String = this.remark
+    fun getCheckTime(): LocalDate = this.checkTime
+    fun getEndTime(): LocalDate = this.endTime
+    fun getIsPenalty(): Boolean = this.isPenalty
+    fun getBookingDate(): LocalDate = this.bookingDate
+    fun getCreatedDate(): LocalDate = this.createUpdateDateSet.createdDate
+    fun getUpdatedDate(): LocalDate = this.createUpdateDateSet.updatedDate
 
 }

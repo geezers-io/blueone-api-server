@@ -15,31 +15,29 @@ import java.time.LocalDate
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
+    val id: Long,
 
     @Column(nullable = false, length = 20)
     private val role: String,
 
     @Column(nullable = false, length = 20)
-    private val phone: String,
+    val phone: String,
 
     @Column(nullable = false, length = 255)
-    private val password: String,
+    val password: String,
 
     @Embedded
-    private val createUpdateDateSet: CreateUpdateDateSet,
+    val createUpdateDateSet: CreateUpdateDateSet,
 
 ) {
 
     /** Getters **/
-    fun getId(): Long { return this.id }
     fun getRole(): UserRole {
         return UserRoleConverter()
                 .serialize(this.role)
     }
-    fun getPhone(): String { return this.phone }
-    fun getEncryptedPassword(): String { return this.password }
-    fun getCreatedDate(): LocalDate { return this.createUpdateDateSet.createdDate }
-    fun getUpdatedDate(): LocalDate { return this.createUpdateDateSet.updatedDate }
+    fun getEncryptedPassword(): String = this.password
+    fun getCreatedDate(): LocalDate = this.createUpdateDateSet.createdDate
+    fun getUpdatedDate(): LocalDate = this.createUpdateDateSet.updatedDate
 
 }
