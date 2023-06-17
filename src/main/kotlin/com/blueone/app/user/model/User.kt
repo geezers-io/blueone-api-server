@@ -15,7 +15,7 @@ import java.time.LocalDate
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @Column(nullable = false, length = 20)
     private val role: String,
@@ -29,13 +29,10 @@ class User(
     @Embedded
     val createUpdateDateSet: CreateUpdateDateSet,
 
-) {
+    ) {
 
     /** Getters **/
-    fun getRole(): UserRole {
-        return UserRoleConverter()
-                .serialize(this.role)
-    }
+    fun getRole(): UserRole = UserRoleConverter().serialize(this.role)
     fun getEncryptedPassword(): String = this.password
     fun getCreatedDate(): LocalDate = this.createUpdateDateSet.createdDate
     fun getUpdatedDate(): LocalDate = this.createUpdateDateSet.updatedDate
