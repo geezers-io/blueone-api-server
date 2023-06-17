@@ -1,5 +1,15 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 custom:
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+logging:
+  level:
+    org.hibernate:
+      SQL: debug
+      type.descriptor.sql: trace

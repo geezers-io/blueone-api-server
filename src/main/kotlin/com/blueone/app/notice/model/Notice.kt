@@ -15,10 +15,8 @@ class Notice(
     @Column(nullable = false)
     private val content: String,
 
-    @Temporal(TemporalType.TIMESTAMP)
     private val startDate: Date,
 
-    @Temporal(TemporalType.TIMESTAMP)
     private val endDate: Date,
 
 ) {
