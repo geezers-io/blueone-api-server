@@ -4,7 +4,6 @@ import com.blueone.app.global.jpa.CreateUpdateDateSet
 import com.blueone.app.user.model.User
 import jakarta.persistence.*
 import java.time.LocalDate
-import java.util.Date
 
 @Entity(name = "transports")
 class Transport(
@@ -37,16 +36,13 @@ class Transport(
         @Column(nullable = true, length = 255)
         private val remark: String,
 
-        @Temporal(TemporalType.TIMESTAMP)
         private val checkTime: LocalDate,
 
-        @Temporal(TemporalType.TIMESTAMP)
         private val endTime: LocalDate,
 
         @Column(nullable = false)
         private val isPenalty: Boolean = false,
 
-        @Temporal(TemporalType.TIMESTAMP)
         private val bookingDate: LocalDate,
 
         @Embedded
